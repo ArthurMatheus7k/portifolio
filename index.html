@@ -19,8 +19,8 @@
             <ul class="nav-links">
                 <li><a href="#about">Sobre Mim</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#projects">Projetos</a></li>
+                <li><a href="#contact">Contato</a></li>
             </ul>
         </div>
     </nav>
@@ -37,7 +37,6 @@
                 <a href="https://www.linkedin.com/in/arthur-matheus-" class="social-link">LinkedIn <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 <a href="https://github.com/FornaziereArthur" class="social-link">GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
-            <div class="dots-decoration"></div>
         </div>
     </header>
 
@@ -132,7 +131,7 @@
                     <div class="project-card-img">
                         <img src="images/finanças.png" alt="Sistema de Controle Financeiro">
                         <div class="project-links">
-                            <a href="https://github.com/ArthurMatheus7k/controle-financeiro" target="_blank" class="project-link">
+                            <a href="https://github.com/FornaziereArthur/controle-financeiro" target="_blank" class="project-link">
                                 <i class="fa-brands fa-github"></i> GitHub
                             </a>
                         </div>
@@ -151,6 +150,11 @@
                 <div class="project-card">
                     <div class="project-card-img">
                         <img src="images/saude.png" alt="Sistema de diagnóstico de saúde">
+                        <div class="project-links">
+                            <a href="https://github.com/FornaziereArthur/fasthealth" target="_blank" class="project-link">
+                                <i class="fa-brands fa-github"></i> GitHub
+                            </a>
+                        </div>
                     </div>
                     <div class="project-card-content">
                         <h3>Sistema de diagnóstico de saúde</h3>
@@ -173,12 +177,34 @@
                 <a href="https://wa.me/5521980150306" target="_blank" class="contact-button">
                     <i class="fa-brands fa-whatsapp"></i> Enviar mensagem
                 </a>
-                <a href="mailto:fmarthur168@gmail.com?subject=Contato via Portfólio&body=Olá Arthur, vi seu portfólio e gostaria de conversar sobre:" class="contact-button" title="Enviar e-mail para Arthur">
+                <a href="#" id="email-button" class="contact-button">
                     <i class="fa-solid fa-envelope"></i> E-mail
                 </a>
             </div>
         </div>
     </section>
+
+    <!-- Modal de E-mail -->
+    <div id="email-modal" class="email-modal">
+        <div class="email-modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Escolha como enviar e-mail</h3>
+            <p>E-mail: fmarthur168@gmail.com</p>
+            <div class="email-options">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=fmarthur168@gmail.com&su=Contato via Portfolio" target="_blank" class="email-option">
+                    <i class="fa-brands fa-google"></i> Gmail
+                </a>
+                <a href="https://outlook.live.com/mail/0/deeplink/compose?to=fmarthur168@gmail.com&subject=Contato via Portfolio" target="_blank" class="email-option">
+                    <i class="fa-brands fa-microsoft"></i> Outlook
+                </a>
+            </div>
+            <div style="display: flex; justify-content: center; margin-top: 10px; width: 100%;">
+                <button id="copy-email" class="email-option" style="min-width: 200px;">
+                    <i class="fa-solid fa-copy"></i> Copiar E-mail
+                </button>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
@@ -225,6 +251,46 @@
             // Verificar no scroll e na carga inicial
             window.addEventListener('scroll', handleScrollAnimation);
             handleScrollAnimation(); // Verificar ao carregar a página
+            
+            // Modal de E-mail
+            const emailModal = document.getElementById('email-modal');
+            const emailBtn = document.getElementById('email-button');
+            const closeBtn = document.querySelector('.close-modal');
+            const copyEmailBtn = document.getElementById('copy-email');
+
+            // Abrir modal quando clicar no botão de e-mail
+            emailBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                emailModal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Impede rolagem da página
+            });
+
+            // Fechar modal quando clicar no X
+            closeBtn.addEventListener('click', function() {
+                emailModal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Permite rolagem da página novamente
+            });
+
+            // Fechar modal quando clicar fora do conteúdo
+            window.addEventListener('click', function(e) {
+                if (e.target === emailModal) {
+                    emailModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Copiar e-mail para a área de transferência
+            copyEmailBtn.addEventListener('click', function() {
+                const email = 'fmarthur168@gmail.com';
+                navigator.clipboard.writeText(email).then(function() {
+                    // Mudar o texto do botão temporariamente
+                    const originalText = copyEmailBtn.innerHTML;
+                    copyEmailBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copiado!';
+                    setTimeout(function() {
+                        copyEmailBtn.innerHTML = originalText;
+                    }, 2000);
+                });
+            });
         });
     </script>
 </body>
