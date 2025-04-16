@@ -26,6 +26,11 @@
     </nav>
 
     <header class="hero">
+        <div class="video-background">
+            <video autoplay muted loop id="bg-video">
+                <source src="images/rede.mp4" type="video/mp4">
+            </video>
+        </div>
         <div class="container hero-content">
             <h1 class="hero-title">Olá! Eu sou Arthur Fornaziere,<br>um Desenvolvedor Backend<br>e Estudante de Engenharia da Computação.</h1>
             <div class="social-links">
@@ -145,16 +150,15 @@
                 <!-- Projeto 2 -->
                 <div class="project-card">
                     <div class="project-card-img">
-                        <img src="images/project2.jpg" alt="API de Integração">
+                        <img src="images/saude.png" alt="Sistema de diagnóstico de saúde">
                     </div>
                     <div class="project-card-content">
-                        <h3>API de Integração</h3>
-                        <p>Criação de uma API RESTful para integração entre sistemas empresariais, permitindo comunicação eficiente entre diferentes plataformas. A API suporta autenticação, cache avançado e inclui documentação automática com Swagger.</p>
+                        <h3>Sistema de diagnóstico de saúde</h3>
+                        <p>Este projeto acadêmico tem como objetivo principal o desenvolvimento de um sistema inteligente capaz de auxiliar no diagnóstico de possíveis doenças com base nos sintomas informados pelo usuário. Utilizando técnicas de Inteligência Artificial, o sistema é projetado para receber a entrada de sintomas e, a partir disso, oferecer uma análise diagnóstica precisa, ágil e personalizada.</p>
                         <div class="project-tech">
                             <span>Python</span>
                             <span>Django</span>
-                            <span>PostgreSQL</span>
-                            <span>Docker</span>
+                            <span>IA</span>               
                         </div>
                     </div>
                 </div>
@@ -164,22 +168,64 @@
 
     <section id="contact" class="contact">
         <div class="container">
-            <h2>Contato</h2>
-            <form class="contact-form">
-                <input type="text" placeholder="Nome" required>
-                <input type="email" placeholder="Email" required>
-                <textarea placeholder="Mensagem" required></textarea>
-                <button type="submit">Enviar Mensagem</button>
-            </form>
+            <h2>Pense simples, mas faça a diferença</h2>
+            <div class="contact-buttons">
+                <a href="https://wa.me/5521980150306" target="_blank" class="contact-button">
+                    <i class="fa-brands fa-whatsapp"></i> Enviar mensagem
+                </a>
+                <a href="mailto:fmarthur168@gmail.com?subject=Contato via Portfólio&body=Olá Arthur, vi seu portfólio e gostaria de conversar sobre:" class="contact-button" title="Enviar e-mail para Arthur">
+                    <i class="fa-solid fa-envelope"></i> E-mail
+                </a>
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 - Todos os direitos reservados</p>
+            <p>&copy; 2025 - Todos os direitos reservados</p>
         </div>
     </footer>
     
     <script src="_app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Função para verificar se um elemento está visível na viewport
+            function isElementInViewport(el) {
+                var rect = el.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.75 &&
+                    rect.bottom >= (window.innerHeight || document.documentElement.clientHeight) * 0.25
+                );
+            }
+
+            // Elementos que serão animados
+            const aboutSection = document.getElementById('about');
+            const profileImage = document.querySelector('.profile-image');
+            const aboutContent = document.querySelector('.about-content');
+
+            // Função para adicionar as animações
+            function handleScrollAnimation() {
+                if (isElementInViewport(aboutSection)) {
+                    // Adicionar classes de animação
+                    profileImage.classList.add('animate-from-left');
+                    aboutContent.classList.add('animate-from-right');
+                }
+            }
+
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Verificar no scroll e na carga inicial
+            window.addEventListener('scroll', handleScrollAnimation);
+            handleScrollAnimation(); // Verificar ao carregar a página
+        });
+    </script>
 </body>
 </html> 
